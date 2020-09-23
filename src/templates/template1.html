@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<style>
+form {
+    margin: auto;
+    width: 35%;
+}
+.result {
+    margin: auto;
+    width: 35%;
+    border: 1px solid #ccc;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+    overflow-y:scroll;
+    height:800px;
+    display:block;
+}
+  table.center {
+    margin-left:auto; 
+    margin-right:auto;
+  }
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+<head>
+    <title>Song Recommender</title>
+</head>
+
+<form action="{{ url_for('home') }}" method="POST">
+    <fieldset>
+        <legend>Input Song ID Numbers Seperated by Comma:</legend>
+        Songs:
+        <input name="Song 1" type="text" required>
+        <br>
+        <br>
+        <input type="submit">
+    </fieldset>
+</form>
+<br>
+<div class="result" align="center">
+    {% if result %}
+        {% for variable, value in original_input.items() %}
+            <b>{{ variable }}</b> : {{ value }}
+        {% endfor %}
+        <br>
+        <br> Recommended Songs:
+        {% for title, artist in result %}
+            <p style="font-size:20px"> <b>{{ title }}</b>, {{ artist }} </p>
+        {% endfor %}
+    {% endif %}
+</div>
+<table class ='center'>
+    <tr>
+        {% for col in column_names %}
+        <th>{{col}}</th>
+        {% endfor %}
+    </tr>
+    {% for row in row_data %}
+    <tr>
+        {% for col, row_ in zip(column_names, row) %}
+        <td>{{row_}}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+
+</table>
+</html>
