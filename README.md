@@ -6,9 +6,9 @@
 ## Sections:
  **[Introduction](#Introduction)**  |
  **[Data](#data)**  |
- **[Modeling](#exploration)**  |
- **[Model](#model)**  |
- **[Takeaways](#takeaways)**  |
+ **[Modeling](#modeling)**  |
+ **[Application](#application)**  |
+ **[Technologies](#technologies)**  |
  
  ---
  ## Introduction
