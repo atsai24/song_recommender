@@ -22,15 +22,16 @@ def home():
 
         
         nums = song_1.split(",")
+        num_ints = [int(num) for num in nums]
         matrix = load_npz('csr_matrix_small.npz')
         model = read_joblib('s3://a-t-first-bucket/song_recommender_data/light_fm_model.joblib')
-
-        for num in nums:
-            matrix[76353, int(num)] = 0.5
+        
+        for num in num_ints:
+            matrix[76353, num] = 0.5
         print('fitting...')
         model.fit_partial(matrix, item_features = item_features_, epochs = 1)
         print('predicting...')
-        prediction = sample_recommendation(model, [76353], songs, item_features_)
+        prediction = sample_recommendation(model, [76353], songs, item_features_, num_ints)
         return render_template('template1.html',
                                      original_input={'Songs':song_1},
                                      result=prediction,

@@ -6,11 +6,11 @@ from lightfm import LightFM
 import pandas as pd
 from scipy.sparse import load_npz
 
-def sample_recommendation(model, user_ids, songs, item_features):
+def sample_recommendation(model, user_ids, songs, item_features, nums):
 
     for user_id in user_ids:
         
-        scores = model.predict(user_id, np.arange(10000), item_features=item_features)
+        scores = model.predict(user_id, np.delete(np.arange(10000),nums), item_features=item_features)
 
         top_titles = songs.iloc[np.argsort(-scores)].title
         top_artists = songs.iloc[np.argsort(-scores)].artist
@@ -18,9 +18,9 @@ def sample_recommendation(model, user_ids, songs, item_features):
         print("User %s" % user_id)
         print("Top Recommendations:")
         
-        for title, artist in zip(top_titles[:10], top_artists[:10]):
+        for title, artist in zip(top_titles[:5], top_artists[:5]):
             print("        %s" % title + ", " +artist)
-    return zip(top_titles[:10], top_artists[:10])
+    return zip(top_titles[:5], top_artists[:5])
             
             
 if __name__ == '__main__':
