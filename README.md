@@ -12,7 +12,7 @@
  
  ---
  ## Introduction
-This recommender application is built on Flask and applies the LightFM algorithm on the Million Song Dataset to rank recommended songs for a user based on inputs of their favorite songs. I used AWS S3 Buckets to host large datasets, and an EC2 instance to perform compuatationally heavy data transformations and model fitting.
+This recommender application is built on Flask and applies the LightFM algorithm on the Million Song Dataset to rank recommended songs for a user based on inputs of their favorite songs. I used AWS S3 Buckets to host large datasets, and an EC2 instance to perform computationally heavy data transformations and model fitting.
 
 <sub>[  **[Back to Sections](#sections)** ]</sub>
 
